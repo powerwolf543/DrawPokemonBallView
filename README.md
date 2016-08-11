@@ -1,8 +1,8 @@
 DrawPokemonBallView
 =========
 
-Swift＜/br＞
-練習如何用CAShapeLayer繪圖＜/br＞
+Swift <br />
+練習如何用CAShapeLayer繪圖 <br />
 成果：畫出一個神奇寶貝球
 
 Version
