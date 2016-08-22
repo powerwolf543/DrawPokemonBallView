@@ -14,8 +14,7 @@ class DrawPokemonBallView: UIView {
     private let bottomBallLayer = CAShapeLayer()
     private let upperBallLayer = CAShapeLayer()
     private let middleLineLayer = CAShapeLayer()
-    private let innerBlackCircleLayer = CAShapeLayer()
-    private let innerWhiteCircleLayer = CAShapeLayer()
+    private let innerCircleLayer = CAShapeLayer()
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
@@ -30,6 +29,7 @@ class DrawPokemonBallView: UIView {
     private func drawPokemonBall() {
         let theBallRadius = CGRectGetHeight(bounds)/2
         let theBallCenterPoint = CGPointMake(CGRectGetMidX(bounds),CGRectGetMidY(bounds))
+        let borderWidth:CGFloat = 10.0
         
         let upperPath = UIBezierPath()
         upperPath.addArcWithCenter(theBallCenterPoint,
@@ -42,7 +42,7 @@ class DrawPokemonBallView: UIView {
         if upperBallLayer.superlayer == nil {
             upperBallLayer.fillColor = UIColor.redColor().CGColor
             upperBallLayer.strokeColor = UIColor.blackColor().CGColor
-            upperBallLayer.lineWidth = 10.0
+            upperBallLayer.lineWidth = borderWidth
             layer.addSublayer(upperBallLayer)
         }
         
@@ -57,7 +57,7 @@ class DrawPokemonBallView: UIView {
         if bottomBallLayer.superlayer == nil {
             bottomBallLayer.fillColor = UIColor.whiteColor().CGColor
             bottomBallLayer.strokeColor = UIColor.blackColor().CGColor
-            bottomBallLayer.lineWidth = 10.0
+            bottomBallLayer.lineWidth = borderWidth
             layer.addSublayer(bottomBallLayer)
         }
         
@@ -69,7 +69,7 @@ class DrawPokemonBallView: UIView {
         if middleLineLayer.superlayer == nil {
             middleLineLayer.fillColor = UIColor.whiteColor().CGColor
             middleLineLayer.strokeColor = UIColor.blackColor().CGColor
-            middleLineLayer.lineWidth = 10.0
+            middleLineLayer.lineWidth = borderWidth
             layer.addSublayer(middleLineLayer)
         }
         
@@ -79,25 +79,13 @@ class DrawPokemonBallView: UIView {
                                               startAngle: 0,
                                               endAngle: 2 * CGFloat(M_PI), clockwise: false)
         
-        innerBlackCircleLayer.path = innerBlackCirclePath.CGPath
+        innerCircleLayer.path = innerBlackCirclePath.CGPath
         
-        if innerBlackCircleLayer.superlayer == nil {
-            innerBlackCircleLayer.fillColor = UIColor.blackColor().CGColor
-            layer.addSublayer(innerBlackCircleLayer)
-        }
-        
-        let innerWhiteCirclePath = UIBezierPath()
-        innerWhiteCirclePath.addArcWithCenter(theBallCenterPoint,
-                                              radius: theBallRadius * 0.2 - 10,
-                                              startAngle: 0,
-                                              endAngle: 2 * CGFloat(M_PI), clockwise: false)
-        
-        innerWhiteCircleLayer.path = innerWhiteCirclePath.CGPath
-        
-        if innerWhiteCircleLayer.superlayer == nil {
-            innerWhiteCircleLayer.fillColor = UIColor.whiteColor().CGColor
-
-            layer.addSublayer(innerWhiteCircleLayer)
+        if innerCircleLayer.superlayer == nil {
+            innerCircleLayer.fillColor = UIColor.whiteColor().CGColor
+            innerCircleLayer.strokeColor = UIColor.blackColor().CGColor
+            innerCircleLayer.lineWidth = borderWidth
+            layer.addSublayer(innerCircleLayer)
         }
     }
 }
